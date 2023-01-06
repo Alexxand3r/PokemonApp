@@ -13,10 +13,12 @@ global class ObtenerHabilidades implements Database.Batchable<Integer>, Database
         HttpResponse response = new HttpResponse();
         request.setMethod('GET');
         Map<String, Object> resultBodyA = new Map <String,Object>();
-        List<Habilidad__c> hablst = new List<Habilidad__c>();
-        String name = '';
         Habilidad__c ability = new Habilidad__c();
+        // List<Habilidad__c> hablst = new List<Habilidad__c>();
+        String name = '';
+       
         for(Integer s : scope){
+            
             request.setEndpoint('https://pokeapi.co/api/v2/ability/' + s);
             response = http.send(request);
             if(response.getStatusCode() == 200 ){
@@ -39,12 +41,11 @@ global class ObtenerHabilidades implements Database.Batchable<Integer>, Database
                         ability.Efecto__c = null;
                     }
                 }
-                //insert ability;
-            hablst.add(ability);   
+                 
             }            
         }
-         //insert ability;
-        insert hablst;
+         insert ability;
+      
     }
       
     global void finish(Database.BatchableContext BC) {
