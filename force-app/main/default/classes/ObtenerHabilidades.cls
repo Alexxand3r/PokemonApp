@@ -15,40 +15,38 @@ global class ObtenerHabilidades implements Database.Batchable<Integer>, Database
         Map<String, Object> resultBodyA = new Map <String,Object>();
         List<Habilidad__c> hablst = new List<Habilidad__c>();
         String name = '';
-      
+        Habilidad__c ability = new Habilidad__c();
         for(Integer s : scope){
             request.setEndpoint('https://pokeapi.co/api/v2/ability/' + s);
             response = http.send(request);
-            Habilidad__c ability = new Habilidad__c();
             if(response.getStatusCode() == 200 ){
                 resultBodyA = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
                 name = (String)resultBodyA.get('name');
-               
+                
                 ability.Name = name.capitalize();
                 ability.ExtId__c = (Integer)resultBodyA.get('id');
                 
-             // Campo Efecto__c
-             Map<String,Object> abil =(Map<String,Object>) JSON.deserializeUntyped(response.getBody());
-             List<Object> effectentries =(List<Object>) abil.get('effect_entries');
-               if (effectentries.size() > 0 ){
-                  Map<String,Object> searchEng = (Map<String,Object>) effectentries.get(0);
-                  Map<String,Object> language = (Map<String,Object>) searchEng.get('language');
-                  String idioma = (String) language.get('name');
-               if (idioma.equals('en')){
-                    String shorteffect = (String) searchEng.get('short_effect');
-                    ability.Efecto__c = shorteffect;
-                } else {
-                    Map<String,Object> english = (Map<String,Object>) effectentries.get(1);
-                    String shorteffect = (String) english.get('short_effect');
-                    ability.Efecto__c = shorteffect;
+                // Campo Efecto__c
+                List<Object> effectentries =(List<Object>) resultBodyA.get('effect_entries');
+                for(Object efecto : effectentries){
+                   
+                    Map<String,Object> searchEng = (Map<String,Object>) efecto;
+                    Map<String,Object> language = (Map<String,Object>) searchEng.get('language');
+                    
+                    if((String) language.get('name') == 'en'){
+                        ability.Efecto__c = (String)searchEng.get('short_effect');
+                    } else {
+                        ability.Efecto__c = null;
+                    }
                 }
-            }
-              
-                hablst.add(ability);
-            }
+                //insert ability;
+            hablst.add(ability);   
+            }            
         }
+         //insert ability;
         insert hablst;
     }
+      
     global void finish(Database.BatchableContext BC) {
         system.debug('Batch habilidad finalizado');
     }
