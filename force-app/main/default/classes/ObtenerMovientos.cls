@@ -29,24 +29,35 @@ global class ObtenerMovientos implements Database.Batchable<Integer>, Database.A
                 move.Poder__c = (Double)resultBodyM.get('power');
                 move.Prioridad__c = (Integer)resultBodyM.get('priority');
                 move.ExtId__c = (Integer)resultBodyM.get('id');
+                move.Chance_de_Efecto__c = (Integer)resultBodyM.get('effect_chance') == null ? 0 : (Integer)resultBodyM.get('effect_chance');
                 
                 // Mapa que contiene el JSON completo que devuelve como respuesta la API, deserializado
                 Map<String,Object> mov =(Map<String,Object>) JSON.deserializeUntyped(response.getBody());
                 
                 // Campos Chance_de_Efecto__c y Efecto__c
-                // 
-                // 
+                List<Object> effectentries =(List<Object>) resultBodyM.get('effect_entries');
+                for(Object efecto : effectentries){
+                    
+                    Map<String,Object> searchEng = (Map<String,Object>) efecto;
+                    Map<String,Object> language = (Map<String,Object>) searchEng.get('language');
+                    
+                    if((String) language.get('name') == 'en'){
+                        move.Efecto__c = (String)searchEng.get('short_effect');
+                    } else {
+                        move.Efecto__c = null;
+                    }
+                }           
+
                 // Campo Objetivo__c 
                 Map<String,Object> target = (Map<String,Object>) mov.get('target');
                 String targetname = (String) target.get('name');
                 move.Objetivo__c = targetname;
-
-                // Campo Tipo__c 
-                 Map<String,Object> type = (Map<String,Object>) mov.get('type');
-                 String typename = (String) type.get('name');
-                 move.Tipo__c = typename.capitalize();
                 
-              
+                // Campo Tipo__c 
+                Map<String,Object> type = (Map<String,Object>) mov.get('type');
+                String typename = (String) type.get('name');
+                move.Tipo__c = typename.capitalize();
+                                
                 movelst.add(move);
             }
         }
