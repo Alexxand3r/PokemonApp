@@ -1,0 +1,59 @@
+<template>
+  <lightning-card title="Pokemons">
+    <template if:true={data}>
+      <div class="slds-card__body_inner">
+        <!--Imputs-->
+        <div class="slds-grid slds-p-around_small slds-align_absolute-center">
+          <!-- Búsqueda por nombre -->
+          <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <lightning-input type="search" onchange={handleSearch} label="Busca tu pokemon: "
+              placeholder="Nombre del pokemon" value={search}>
+            </lightning-input>
+          </div>
+
+          <!--Búsqueda por tipo -->
+          <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <lightning-combobox name="tipo" label="Tipo de pokemon: " value={tipo} options={opcionesTipo}
+              onchange={handleTypeChange}>
+            </lightning-combobox>
+          </div>
+          <!--Búsqueda por Generación -->
+          <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <lightning-combobox name="generación" label="Generación de pokemon: " value={generacion}
+              placeholder="Generación del Pokemon..." options={opcionesGen} onchange={handleGenChange}>
+            </lightning-combobox>
+          </div>
+        </div><!-- fin Imputs-->
+
+        <!-- Resultados contador-->
+        <div class="slds-text-heading_medium slds-align_absolute-center">
+          <h3>Resultados Encontrados! : {data.length}</h3>
+        </div>
+
+        <!-- Visualización de cards -->
+        <div class="slds-grid slds-p-around_small slds-align_absolute-center    slds-wrap">
+          <template for:each={data} for:item="pokemon">
+            <div key={pokemon.Id} class="slds-col slds-size_1-of-8 slds-align_absolute-center">
+              <lightning-card title={pokemon.Name}>
+                <div>
+                  <div>
+                    <img src={pokemon.Imagen__c} alt="imagen del Pokemon." onclick={handleClick}
+                      data-id={pokemon.Id}></img>
+                  </div>
+                  <div>
+                    <br><b>Índice:</b> {pokemon.ExtId__c}.<br>
+                    <b>Tipo:</b> {pokemon.Tipos__c}.<br>
+                    <b>Altura:</b> {pokemon.Altura__c} m.<br>
+                    <b>Peso:</b> {pokemon.Peso__c} kg.<br>
+                    <b>Generación:</b> {pokemon.Generacion__c}.<br>
+                  </div>
+                </div>
+              </lightning-card>
+            </div>
+          </template>
+        </div> <!-- Fin Visualización de cards -->
+
+      </div>
+    </template>
+  </lightning-card>
+</template>

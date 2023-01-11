@@ -7,7 +7,7 @@ public class PokemonCard {
         ];
     }
      @Auraenabled(cacheable=true)
-    public static List<Pokemon__c> getType(String tipo) {
+    public static List<Pokemon__c> buscarTipo(String tipo) {
         if (String.isBlank(tipo)) {
             return buscarPokemons();
         }else {
