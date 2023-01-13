@@ -1,9 +1,10 @@
 <template>
-  <lightning-card title="Pokemons">
+  <lightning-card>
     <template if:true={data}>
       <div class="slds-card__body_inner">
         <!--Imputs-->
         <div class="slds-grid slds-p-around_small slds-align_absolute-center">
+
           <!-- Búsqueda por nombre -->
           <div class="slds-size_1-of-3 slds-align_absolute-center">
             <lightning-input type="search" onchange={handleSearch} label="Busca tu pokemon: "
@@ -17,6 +18,7 @@
               onchange={handleTypeChange}>
             </lightning-combobox>
           </div>
+
           <!--Búsqueda por Generación -->
           <div class="slds-size_1-of-3 slds-align_absolute-center">
             <lightning-combobox name="generación" label="Generación de pokemon: " value={generacion}
@@ -26,12 +28,16 @@
         </div><!-- fin Imputs-->
 
         <!-- Resultados contador-->
-        <div class="slds-text-heading_medium slds-align_absolute-center">
+        <div class="slds-text-heading_medium slds-text-align_center slds-m-bottom_small">
           <h3>Resultados Encontrados! : {data.length}</h3>
         </div>
 
         <!-- Visualización de cards -->
-        <div class="slds-grid slds-p-around_small slds-align_absolute-center    slds-wrap">
+        <h2 icon-name="action:bug"
+          class="slds-text-align_center slds-text-heading_large slds-m-top_x-small slds-border_top">Pokemons
+        </h2>
+        <div class="slds-grid slds-p-around_small slds-align_absolute-center slds-wrap">
+
           <template for:each={data} for:item="pokemon">
             <div key={pokemon.Id} class="slds-col slds-size_1-of-8 slds-align_absolute-center">
               <lightning-card title={pokemon.Name}>
@@ -41,10 +47,7 @@
                       data-id={pokemon.Id}></img>
                   </div>
                   <div>
-                    <br><b>Índice:</b> {pokemon.ExtId__c}.<br>
                     <b>Tipo:</b> {pokemon.Tipos__c}.<br>
-                    <b>Altura:</b> {pokemon.Altura__c} m.<br>
-                    <b>Peso:</b> {pokemon.Peso__c} kg.<br>
                     <b>Generación:</b> {pokemon.Generacion__c}.<br>
                   </div>
                 </div>

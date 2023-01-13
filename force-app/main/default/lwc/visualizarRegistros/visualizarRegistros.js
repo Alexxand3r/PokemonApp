@@ -35,15 +35,15 @@ export default class VisualizarRegistros extends NavigationMixin(LightningElemen
     }
     get opcionesGen() {
         return [
-            { label: 'Todos', value: 0 },
-            { label: 'Primera', value: 1 },
-            { label: 'Segunda', value: 2 },
-            { label: 'Tercera', value: 3 },
-            { label: 'Cuarta', value: 4 },
-            { label: 'Quinta', value: 5 },
-            { label: 'Sexta', value: 6 },
-            { label: 'Septima', value: 7 },
-            { label: 'Octava', value: 8 },
+            { label: 'todos', value: 0 },
+            { label: '1ra Gen', value: 1 },
+            { label: '2da Gen', value: 2 },
+            { label: '3ra Gen', value: 3 },
+            { label: '4ta Gen', value: 4 },
+            { label: '5ta Gen', value: 5 },
+            { label: '6ta Gen', value: 6 },
+            { label: '7ma Gen', value: 7 },
+            { label: '8va Gen', value: 8 },
         ];
     }
     connectedCallback(){
