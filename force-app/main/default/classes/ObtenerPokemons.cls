@@ -61,7 +61,7 @@ global class ObtenerPokemons implements Database.Batchable<Integer>, Database.Al
                 
                 pokemon.Habilidad__c = habid.id;
                 
-                // Campo de tipo lookup al objeto Movimiento__c
+                // Campo Slot relacionado al objeto Movimiento__c
                 List<Object> movi = (List<Object>) resultBody.get('moves');
                 if (movi.size() >= 4) {
                     Map<String,Object> movi0 =(Map<String,Object>) movi.get(0);
@@ -121,14 +121,14 @@ global class ObtenerPokemons implements Database.Batchable<Integer>, Database.Al
                                 Movimiento__c slot1  = [SELECT Id FROM Movimiento__c WHERE Name = :moviName LIMIT 1];
                                 pokemon.Slot1__c = slot1.Id;
                             }
-                           
+                            
                         }
                         
                     }
                     
                 }
-            
-         insert pokemon;
+                
+                insert pokemon;
             }
         }
     }

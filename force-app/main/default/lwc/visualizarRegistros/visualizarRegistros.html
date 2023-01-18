@@ -41,17 +41,17 @@
           <template for:each={data} for:item="pokemon">
             <div key={pokemon.Id} class="slds-col slds-size_1-of-8 slds-align_absolute-center">
               <lightning-card title={pokemon.Name}>
+
                 <div>
-                  <div>
-                    <img src={pokemon.Imagen__c} alt="imagen del Pokemon." onclick={handleClick}
-                      data-id={pokemon.Id}></img>
-                  </div>
-                  <div>
-                    <b>N°</b> {pokemon.ExtId__c}.<br>
-                    <b>Tipo:</b> {pokemon.Tipos__c}.<br>
-                    <b>Generación:</b> {pokemon.Generacion__c}.<br>
-                  </div>
+                  <img src={pokemon.Imagen__c} alt="imagen del Pokemon." onclick={handleClick}
+                    data-id={pokemon.Id}></img>
                 </div>
+                <div>
+                  <b>N°</b> {pokemon.ExtId__c}.<br>
+                  <b>Tipo:</b> {pokemon.Tipos__c}.<br>
+                  <b>Generación:</b> {pokemon.Generacion__c}.<br>
+                </div>
+
               </lightning-card>
             </div>
           </template>
