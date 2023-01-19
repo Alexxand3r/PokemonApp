@@ -1,0 +1,32 @@
+.lwcContador{
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+margin-top: 20px;
+margin-bottom: 30px;
+font-size: 27px;
+}
+.lwcContador span{
+color: #fe5d40;
+font-size: 26px;
+}
+.lwcCard{
+border: 2px solid #fe5d40;
+margin: 5px;
+border-radius: 15px;
+cursor: pointer;
+}
+.lwcTitulo{
+font-size: 35px;
+font-weight: bold;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border-top: 1.5px solid#fe5d40;
+border-bottom: 1.5px solid#fe5d40;
+}
+.lwcCard__name{
+font-size:25px;
+text-decoration: underline;
+text-decoration-color:#fe5d40;
+}
+.lwcCard__info{
+font-size: 18px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

@@ -14,14 +14,14 @@
 
           <!--Búsqueda por tipo -->
           <div class="slds-size_1-of-3 slds-align_absolute-center">
-            <lightning-combobox name="tipo" label="Tipo de pokemon: " value={tipo} options={opcionesTipo}
+            <lightning-combobox name="tipo" label="Tipo del pokemon: " value={tipo} options={opcionesTipo}
               onchange={handleTypeChange}>
             </lightning-combobox>
           </div>
 
           <!--Búsqueda por Generación -->
           <div class="slds-size_1-of-3 slds-align_absolute-center">
-            <lightning-combobox name="generación" label="Generación de pokemon: " value={generacion}
+            <lightning-combobox name="generación" label="Generación del pokemon: " value={generacion}
               placeholder="Generación del Pokemon..." options={opcionesGen} onchange={handleGenChange}>
             </lightning-combobox>
           </div>
@@ -29,29 +29,27 @@
 
         <!-- Resultados contador-->
         <div class="slds-text-heading_medium slds-text-align_center slds-m-bottom_small">
-          <h3>Resultados Encontrados! : {data.length}</h3>
+          <h3 class="lwcContador">Resultados Obtenidos : <span>{data.length}</span></h3>
         </div>
 
         <!-- Visualización de cards -->
-        <h2 icon-name="action:bug"
-          class="slds-text-align_center slds-text-heading_large slds-m-top_x-small slds-border_top">Pokemons
-        </h2>
+        <h1 class="slds-text-align_center  slds-border_top lwcTitulo">Pokemons
+        </h1>
         <div class="slds-grid slds-p-around_small slds-align_absolute-center slds-wrap">
 
           <template for:each={data} for:item="pokemon">
-            <div key={pokemon.Id} class="slds-col slds-size_1-of-8 slds-align_absolute-center">
-              <lightning-card title={pokemon.Name}>
-
+            <div key={pokemon.Id} class="slds-col slds-size_1-of-6  slds-align_absolute-center lwcCard">
+              <lightning-card>
+                <h2 class="lwcCard__name"><b>{pokemon.Name}</b></h2>
                 <div>
                   <img src={pokemon.Imagen__c} alt="imagen del Pokemon." onclick={handleClick}
                     data-id={pokemon.Id}></img>
                 </div>
                 <div>
-                  <b>N°</b> {pokemon.ExtId__c}.<br>
-                  <b>Tipo:</b> {pokemon.Tipos__c}.<br>
-                  <b>Generación:</b> {pokemon.Generacion__c}.<br>
+                  <h3 class="lwcCard__info"><b>N° : </b> {pokemon.ExtId__c}.</h3>
+                  <h3 class="lwcCard__info"><b>Tipo : </b> {pokemon.Tipos__c}.</h3>
+                  <h3 class="lwcCard__info"><b>Generación : </b> {pokemon.Generacion__c}.</h3>
                 </div>
-
               </lightning-card>
             </div>
           </template>
