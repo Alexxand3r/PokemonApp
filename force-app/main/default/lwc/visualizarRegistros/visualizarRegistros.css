@@ -5,7 +5,7 @@ margin-bottom: 30px;
 font-size: 27px;
 }
 .lwcContador span{
-color: #fe5d40;
+color: #0176d3;
 font-size: 26px;
 }
 .lwcCard{
@@ -21,12 +21,31 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 border-top: 1.5px solid#fe5d40;
 border-bottom: 1.5px solid#fe5d40;
 }
+.lwcCard__name-Contenedor{
+  display: flex;
+  flex-direction: row;
+ align-items: center;
+ justify-content: space-around;
+}
 .lwcCard__name{
-font-size:25px;
-text-decoration: underline;
-text-decoration-color:#fe5d40;
+  font-size:25px;
+  margin-right: 8px;
+}
+.lwcCard__img{
+  display: flex;
+  justify-content: center;
 }
 .lwcCard__info{
 font-size: 18px;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.lwcCard__info-numero{
+  font-size: 18px;
+margin-left: 5px;
+margin-top: 5px;
+font-weight: bold;
+
+}
+.lwcCard__info-span{
+  color: #0176d3;
 }

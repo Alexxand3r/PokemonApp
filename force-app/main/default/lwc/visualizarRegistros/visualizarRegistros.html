@@ -40,15 +40,20 @@
           <template for:each={data} for:item="pokemon">
             <div key={pokemon.Id} class="slds-col slds-size_1-of-6  slds-align_absolute-center lwcCard">
               <lightning-card>
-                <h2 class="lwcCard__name"><b>{pokemon.Name}</b></h2>
-                <div>
+                <div class="lwcCard__name-Contenedor">
+                  <h2 class="lwcCard__name"><b>{pokemon.Name}</b> </h2>
+                  <h3 class="lwcCard__info-numero"><b>N° : </b> <span
+                      class="lwcCard__info-span">{pokemon.ExtId__c}.</span>
+                  </h3>
+                </div>
+                <div class="lwcCard__img">
                   <img src={pokemon.Imagen__c} alt="imagen del Pokemon." onclick={handleClick}
                     data-id={pokemon.Id}></img>
                 </div>
                 <div>
-                  <h3 class="lwcCard__info"><b>N° : </b> {pokemon.ExtId__c}.</h3>
                   <h3 class="lwcCard__info"><b>Tipo : </b> {pokemon.Tipos__c}.</h3>
-                  <h3 class="lwcCard__info"><b>Generación : </b> {pokemon.Generacion__c}.</h3>
+                  <h3 class="lwcCard__info"><b>Generación : </b> <span
+                      class="lwcCard__info-span">{pokemon.Generacion__c}</span>.</h3>
                 </div>
               </lightning-card>
             </div>

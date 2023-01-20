@@ -6,9 +6,11 @@ import buscarGen from '@salesforce/apex/PokemonCard.buscarGen';
 import searchThis from '@salesforce/apex/PokemonCard.searchThis';
 
 export default class VisualizarRegistros extends NavigationMixin(LightningElement) {
-    @track data;
+    
+  @track data;
     @track tipo = '';
     @track generacion = '';
+    
     search;
     get opcionesTipo() {
         return [
